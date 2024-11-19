@@ -3,6 +3,8 @@ let userPrompt = prompt("Skriv en stad:")
 
 let cityNameBox;
 
+let cityAndCountryTitle;
+
 function createAllCityBoxes() {
 
     let cityNamesContainer = document.querySelector("#cities");
@@ -11,22 +13,27 @@ function createAllCityBoxes() {
         cityNameBox = document.createElement("div");
         cityNameBox.className = "cityBox";
         cityNameBox.textContent = city.name;
-        cityNamesContainer.appendChild(cityNameBox);
 
-        markCityBox();
+        cityNamesContainer.appendChild(cityNameBox);
+        cityObject = city.name;
+
+        markCityBox(cityObject);
     }
+}
+
+function markCityBox(cityObject) {
+    cityAndCountryTitle = document.querySelector("h2")
+
+    if (userPrompt == cityObject) {
+        cityAndCountryTitle.textContent = cityObject + " (" + city.country + ") ";
+        cityNameBox.className = "cityBox target";
+
+
+    } else if (userPrompt != cityObject) {
+
+        cityAndCountryTitle.textContent = userPrompt + " finns inte i databasen";
+    }
+
 }
 
 createAllCityBoxes();
-
-function markCityBox() {
-
-    if (userPrompt == city.name) {
-        cityNameBox.className = "cityBox target";
-    }
-}
-
-// Recommended: constants with references to existing HTML-elements
-
-// Recommended: Ask for the city name and then the rest of the code
-
