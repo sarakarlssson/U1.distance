@@ -68,15 +68,25 @@ function createTable() {
     for (let i = 0; i < cities.length; i++) {
         let nameCell = document.createElement("div")
         nameCell.textContent = cities[i].id + "-" + cities[i].name;
-        nameCell.classList = ("head_column cell")
+        nameCell.classList = ("head_column cell");
+
+
+
         table.appendChild(nameCell);
 
         // gå igenom distancetabellen skapa tom ruta om id och 
         for (let j = 0; j < cities.length; j++) {
             let cell = document.createElement("div");
             cell.classList.add("cell")
+
             cell.textContent = " "
             table.appendChild(cell)
+
+            if (cities[i].id % 2 == 0) {
+                evenRowClass(nameCell, cell)
+            }
+
+            //evenRowClass(nameCell, cell)
 
             let cellContent;
             // om i o j är samma gör strängen är tom
@@ -95,16 +105,21 @@ function createTable() {
                         break; // Avslutar loopen när en match hittas
                         //cell.appendChild(cellContent);
                     }
-
                 }
                 cell.textContent = cellContent;
             }
-
         }
     }
 
 }
 
+function evenRowClass(nameCell, cell) {
+
+    nameCell.classList.add("even_row");
+    cell.classList.add("even_row");
+
+
+}
 
 
 
