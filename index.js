@@ -48,11 +48,13 @@ function createTable() {
     let table = document.getElementById("table");
 
     // skapa en en tom div längst upp
+
     let idRowTop = document.createElement("div");
     idRowTop.textContent = "tom";
     idRowTop.classList.add("cell")
     idRowTop.classList.add("head_row")
     table.appendChild(idRowTop);
+
 
 
     // skapa raden längst upp med id
@@ -79,10 +81,14 @@ function createTable() {
             let cell = document.createElement("div");
             cell.classList.add("cell")
 
+            if (j % 2 == 0) {
+                evenColClass(cell); //anropar funktion som gör bakgrunden på varannan column rosa
+            }
+
             cell.textContent = " "
             table.appendChild(cell)
 
-            if (cities[i].id % 2 == 0) {
+            if (cities[i].id % 2 == 0) {  //anropar funktion som gör varannan rad tjock border
                 evenRowClass(nameCell, cell)
             }
 
@@ -117,8 +123,10 @@ function evenRowClass(nameCell, cell) {
 
     nameCell.classList.add("even_row");
     cell.classList.add("even_row");
+}
 
-
+function evenColClass(cell) {
+    cell.classList.add("even_col")
 }
 
 
