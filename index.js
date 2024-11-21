@@ -6,6 +6,7 @@ let userPrompt = prompt("Skriv en stad:")
 let eachCityNameBox;
 let cityAndCountryTitle;
 let found = false;
+let target = " "
 
 function createAllCityBoxes() {
 
@@ -118,6 +119,54 @@ function createTable() {
     }
 
 }
+// få fram närmsta avstånd och stad
+function closestDistance() {
+    let closest = null;
+    let closestDistance = Infinity;
+    let closestId = null;
+
+    for (let i = 0; i < cities.length; i++) {
+        if (userPrompt == cities[i].name) {
+            target = cities[i].name;
+
+            for (let j = 0; j < distances.length; j++) {
+                if ((cities[i].id != distances[j].city1) ||
+                    (cities[i].id != distances[j].city2)) {
+                    let otherCityId;
+
+                    if (cities[i].id != distances[j].city1) {
+                        otherCityId = distances[j].city1;
+
+                    } else {
+                        let otherCityId = distances[j].city2
+                    }
+
+                    if (distances[j].distance < closestDistance) {
+
+                        closestDistance = distances[j].distance;
+
+                        closest = otherCityId;
+
+                        console.log(closest)
+                        console.log(closestDistance)
+                    }
+
+
+                }
+
+            }
+
+
+
+        }
+    }
+}
+
+
+
+
+
+
 
 function evenRowClass(nameCell, cell) {
 
@@ -133,3 +182,4 @@ function evenColClass(cell) {
 
 createAllCityBoxes();
 createTable();
+closestDistance();
